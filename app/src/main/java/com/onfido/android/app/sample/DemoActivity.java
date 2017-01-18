@@ -61,7 +61,8 @@ public class DemoActivity extends AppCompatActivity {
     private void startCheck(OnfidoConfig config, Applicant applicant, OnfidoAPI onfidoAPI){
         final List<Report> currentReports = new ArrayList<>();
         currentReports.add(new Report(Report.Type.DOCUMENT));
-        currentReports.add(new Report(Report.Type.IDENTITY));
+//        currentReports.add(new Report(Report.Type.DOCUMENT));
+//        currentReports.add(new Report(Report.Type.IDENTITY));
 
         setLoadingFragment(getString(com.onfido.android.sdk.capture.R.string.message_loading_identify_verification));
 
@@ -78,7 +79,7 @@ public class DemoActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(ErrorData errorData) {
-                        showErrorMessage(errorData.getMessage());
+                        showErrorMessage(errorData. getMessage()+ " : " + errorData.getType());
                     }
                 }
         );
