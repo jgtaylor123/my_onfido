@@ -10,3 +10,4 @@ Create a file called `secrets` in the root of the project and place the API toke
 ```
 onfido_api_token=YOUR_TOKEN_HERE
 ```
+# my_onfido
