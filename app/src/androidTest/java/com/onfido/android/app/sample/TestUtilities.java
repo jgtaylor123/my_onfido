@@ -22,6 +22,8 @@ public class TestUtilities {
 
     public static final int GRANT_BUTTON_INDEX = 1;
     public static final int DENY_BUTTON_INDEX = 0;
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+    private static final String TAG = "MainActivity";
 
     public static ViewAction waitFor(final long millis) {
         return new ViewAction() {
@@ -44,7 +46,6 @@ public class TestUtilities {
 
     public static boolean clickPermissionsIfNeeded(int BUTTON_INDEX) throws UiObjectNotFoundException {
         boolean porf = false;
-//        onView(isRoot()).perform(waitFor(5000));
         if (Build.VERSION.SDK_INT >= 23) {
             UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
             UiObject permissionsButton = device.findObject(new UiSelector().text("Allow")
@@ -82,4 +83,21 @@ public class TestUtilities {
         }
         return porf;
     }
+
+
+//    public boolean checkPlayServices() {
+//        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+//        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+//        if (resultCode != ConnectionResult.SUCCESS) {
+//            if (apiAvailability.isUserResolvableError(resultCode)) {
+//                apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+//                        .show();
+//            } else {
+//                Log.i(TAG, "This device is not supported.");
+////                finish();
+//            }
+//            return false;
+//        }
+//        return true;
+//    }
 }

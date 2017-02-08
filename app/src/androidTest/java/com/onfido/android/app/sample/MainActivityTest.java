@@ -1,6 +1,7 @@
 package com.onfido.android.app.sample;
 
 import android.support.test.espresso.ViewInteraction;
+import android.support.test.filters.MediumTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.uiautomator.UiObjectNotFoundException;
@@ -30,13 +31,14 @@ import static org.hamcrest.Matchers.containsString;
  */
 
 @RunWith(AndroidJUnit4.class)
+@MediumTest
 public class MainActivityTest {
 
     @Rule public final ActivityTestRule<MainActivity> main = new ActivityTestRule<>(MainActivity.class);
 
     @Test
     public void shouldBeAbleToLaunchMainScreen() {
-        onView(withText("Choose example option")).check(matches(isDisplayed()));
+        onView(withId(R.id.toolbar)).check(matches(isDisplayed()));
 
     }
 
@@ -46,6 +48,7 @@ public class MainActivityTest {
         TestUtilities.clickPermissionsIfNeeded(TestUtilities.GRANT_BUTTON_INDEX);
         onView(withId(R.id.tv_title))
                 .check(matches(isDisplayed()))
+                // if we add localization, we'll want not to verify the text
                 .check(matches(withText("Identity verification")));
     }
 
@@ -55,6 +58,7 @@ public class MainActivityTest {
         TestUtilities.clickPermissionsIfNeeded(TestUtilities.GRANT_BUTTON_INDEX);
         onView(withId(R.id.tv_title))
                 .check(matches(isDisplayed()))
+                // if we add localization, we'll want not to verify the text
                 .check(matches(withText("Identity verification")));
     }
 
@@ -64,6 +68,7 @@ public class MainActivityTest {
         TestUtilities.clickPermissionsIfNeeded(TestUtilities.GRANT_BUTTON_INDEX);
         onView(withId(R.id.tv_message))
                 .check(matches(isDisplayed()))
+                // if we add localization, we'll want not to verify the text
                 .check(matches(withText(containsString("custom"))));
     }
 
@@ -73,6 +78,7 @@ public class MainActivityTest {
         TestUtilities.clickPermissionsIfNeeded(TestUtilities.GRANT_BUTTON_INDEX);
         onView(withId(R.id.tv_message))
                 .check(matches(isDisplayed()))
+                // if we add localization, we'll want not to verify the text
                 .check(matches(withText(containsString("face capture"))));
     }
 
@@ -82,6 +88,8 @@ public class MainActivityTest {
         TestUtilities.clickPermissionsIfNeeded(TestUtilities.GRANT_BUTTON_INDEX);
 
         onView(allOf(withId(R.id.tv_title), withText("Identity verification"), isDisplayed()));
+
+        onView(isRoot()).perform(waitFor(5000));
 
         ViewInteraction inititateButton = onView(allOf(withId(R.id.bt_go), isDisplayed(), isClickable()));
         inititateButton.perform(click());
