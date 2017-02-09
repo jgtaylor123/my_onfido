@@ -19,6 +19,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static com.onfido.android.app.sample.R.string.bank_instructions;
 import static com.onfido.android.app.sample.R.string.label_doc_type_driving_license;
 import static com.onfido.android.app.sample.TestUtilities.waitFor;
 import static org.hamcrest.Matchers.allOf;
@@ -36,6 +37,13 @@ public class MainActivityTest {
 
     @Rule public final ActivityTestRule<MainActivity> main = new ActivityTestRule<>(MainActivity.class);
 
+    @Test
+    public void intentionallyFailingTest() {
+        onView(withText(bank_instructions))
+                .check(matches(isDisplayed()))
+                .check(matches(withText(containsString("STRING THAT SHOULD NOT BE PRESENT"))));
+    }
+    
     @Test
     public void shouldBeAbleToLaunchMainScreen() {
         onView(withId(R.id.toolbar)).check(matches(isDisplayed()));
