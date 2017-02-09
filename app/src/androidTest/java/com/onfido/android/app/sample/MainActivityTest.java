@@ -43,7 +43,7 @@ public class MainActivityTest {
                 .check(matches(isDisplayed()))
                 .check(matches(withText(containsString("STRING THAT SHOULD NOT BE PRESENT"))));
     }
-    
+
     @Test
     public void shouldBeAbleToLaunchMainScreen() {
         onView(withId(R.id.toolbar)).check(matches(isDisplayed()));
@@ -87,7 +87,7 @@ public class MainActivityTest {
         onView(withId(R.id.tv_message))
                 .check(matches(isDisplayed()))
                 // if we add localization, we'll want not to verify the text
-                .check(matches(withText(containsString("face capture"))));
+                .check(matches(withText(containsString("face"))));
     }
 
     @Test
